@@ -1,0 +1,437 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Diamond Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	/* General styles */
+
+	/*body {
+		font-family: Arial, sans-serif;
+		margin: 0;
+		padding: 0;
+		background: linear-gradient(to right, #fda9f5, #b2ebf2, #f6b0f8, #4dd0e1, #de7df1);
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}*/
+	body {
+		font-family: Arial, sans-serif;
+		margin: 0;
+		padding: 0;
+		/* Gradient background with light blue face colors */
+		background: linear-gradient(to right, #e675cb, #e233ca, #f271f6, #4dd0e1, #26c6da);
+		height: 100vh; /* Make the background cover the full viewport height */
+		display: flex;
+		flex-direction: column; /* Make the body a flex container */
+	}
+	
+	/*#header {
+		padding: 15px;
+		text-align: center;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		background: linear-gradient(to right, #f1b1e9, #f071f0, #80deea, #db5cd5, #ee64cb);
+		color: white;
+	}*/
+	#header {
+		padding: 15px;
+		text-align: center;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		/* Gradient background for the header */
+		background: linear-gradient(to right, #da3aca, #e068ed, #f368e9, #4dd0e1, #26c6da);
+		color: rgb(136, 4, 101);
+	}
+	
+	/*h1 {
+	text-transform: uppercase;
+	letter-spacing: 0.1rem;
+	background: linear-gradient(to right, #8b128f, #fc3f8e, #f047f0, #c91182, #d4125d);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: pulse 3s infinite;
+	color: #2293EF;
+	font: bold 36px rem 'Poppins', sans-serif;
+	text-align: center;
+	}*/
+	h1 {
+	color: #186AC5;
+	text-align: center;
+	font-size: 42px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	}
+	h2 {
+		font-family: 'French Script MT', cursive; 
+		color: #0000FF; 
+		font-size: 48px;
+	}
+	p {
+		font-family: 'Comic Sans MS', cursive; color: #0000FF;
+	}
+	
+	/*.card {
+		background-color: white;
+		border-radius: 10px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		padding: 20px;
+		text-align: center;
+		transition: transform 0.3s;
+		background: linear-gradient(to bottom, #87CEFA, #8abfeb, #d488e4);
+		display: flex; 
+		align-items: center; 
+		justify-content: center; 
+		flex-direction: column;
+	}
+	.card:hover {
+            transform: scale(1.05);
+       }*/
+	.card {
+		background-color: rgb(202, 13, 189);
+		border-radius: 10px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		padding: 20px;
+		text-align: center;
+		transition: transform 0.3s;
+	}
+
+	.card:hover {
+		transform: scale(1.05);
+	}
+	
+	/*button {
+		background-color: #1976d2;
+		color: white;
+		border: none;
+		padding: 10px 20px;
+		margin: 10px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}*/
+	button {
+	color: #d219ad;
+	border: none;
+	padding: 10px 20px;
+	margin: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	background: #800977;
+	}
+
+	button:hover {
+		background-color: #720da1;
+	}
+	
+	footer {
+	text-align: center;
+	padding: 10px;
+	background-color: rgba(55, 71, 79, 0.7); /* Slightly transparent background */
+	color: white;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	margin-top: 10px;
+	}
+	footer p {
+		color:#FFF;
+	}
+	
+	/* Modal styles */
+	.modal {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+	
+	.modal-content {
+		background-color: #f354be;
+		margin: 10% auto;
+		padding: 20px;
+		border: 1px solid #ec59b4;
+		width: 80%;
+	}
+	
+	.close {
+		color: #aaaaaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	
+	.close:hover,
+	.close:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	.chat-bubble {
+		background-color: #E0FFFF;
+		border-radius: 10px;
+		padding: 10px;
+		max-width: 300px;
+		margin: 10px;
+	}
+	
+	.chat-bubble p {
+		margin: 0;
+	}
+	
+	.section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+            padding: 20px;
+     }
+	/* Pulsing animation */
+	@keyframes pulse {
+		0% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.6;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	/* Responsive adjustment for the title */
+	@media (max-width: 768px) {
+		h1 {
+			font-size: 2rem; /* Adjust font size for smaller screens */
+		}
+	}
+
+</style>
+</head>
+
+<body>
+<div id="header">
+	<!-- Advanced title with diamond emojis -->
+    <h1>💎 💎 Diamond Showcase  💎 💎</h1>
+    <p>  💎 💎 💎 💎 💎 💎 💎 💎 💎 💎💎Experience the brilliance and beauty of diamonds💎💎 💎 💎 💎 💎 💎 💎 💎 💎 💎 💎</p>
+</div>
+<div id="container">
+	<div class="section">
+        <div class="card">
+            <h2>💎 Sparkling Diamond Cuts 💎</h2>
+            <img src="diamonds/Types-of-Diamond-Cuts---How-to-Choose-The-Right-Shape.webp" alt="💎 Sparkling Diamond Cuts 💎" width="400">
+            <p>The most popular and sparkling diamond cuts!</p>
+            <button style="font-family: 'Comic Sans MS', cursive;" onclick="showCutDetails('Sparkling!')">Discover More</button>
+        </div>
+        <div class="card">
+            <h2>💎 Dazzling Diamond Colors 💎</h2>
+            <img src="diamonds/diamond_Color_Chart1_9020e7ec7b.webp" alt="💎 Dazzling Diamond Colors 💎" width="400">
+            <p>The most popular and dazzling diamond colors!</p>
+            <button style="font-family: 'Comic Sans MS', cursive;" onclick="showCutDetails('Colorful!')">Discover More</button>
+        </div>
+        <div class="card">
+            <h2>💎 Dazzling Diamond Clarity 💎</h2>
+            <img src="diamonds/Diamond-Clarity-Chart-11.webp" alt="💎 Gorgeous Diamond Clarity 💎" width="400">
+            <p>The most popular and dazzling diamond clarity!</p>
+            <button style="font-family: 'Comic Sans MS', cursive;" onclick="showCutDetails('So Clear!')">Discover More</button>
+        </div>
+    </div>
+    <div clas="section">
+        <div class="chat-bubble">
+        	<p>Hello! Would you like to know more about diamonds?</p>
+        </div>
+        <div class="card">
+<!---->     <iframe src="http://127.0.0.1:7860" style="width: 100%; height: 500px;" frameborder="0"></iframe>
+        </div>
+    </div>
+    <div class="section">
+    	<!-- Image Generator -->
+		<div class="card">
+            <h2>💎 Diamond Image Generator 💎</h2>
+            <img src="diamonds/image4.png" alt="💎 Diamond Image Generator 💎" width="400">
+            <p>Interact with our diamond image generator to see what your desired 💎 diamond 💎 looks like!</p>
+          <button style="font-family: 'Comic Sans MS', cursive;" id="gradioBtn" onclick="launchDiamondPricingTool()">Launch Diamond Image Generator</button>
+        </div>
+        
+        <!-- Gradio Interface Modal -->
+        <div id="gradioModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+<!---->       	<iframe src="http://127.0.0.1:7861" style="width: 100%; height: 500px;" frameborder="0"></iframe>
+            </div>
+        </div>
+        <!-- End Gradio Interface -->
+
+        <!-- Price tool -->
+        <div class="card">
+            <h2>💎 Diamond Pricing Tool 💎</h2>
+            <img src="diamonds/image3.png" alt="Diamond Pricing Tool" width="600">
+            <p>Interact with our diamond pricing tool to learn what your desired diamond costs!</p>
+          <button style="font-family: 'Comic Sans MS', cursive;" id="gradioPricingBtn" onclick="launchDiamondPricingTool()">Launch Diamond Pricing Tool</button>
+        </div>
+        
+        <!-- Gradio Interface Modal -->
+        <div id="gradioPricing" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+<!---->         <iframe src="http://127.0.0.1:7862" style="width: 100%; height: 500px;" frameborder="0"></iframe>
+            </div>
+        </div>
+        <!-- End Gradio Interface -->
+    </div>
+    
+    <!--<div class="section">-->
+        <!--<div class="card">
+            <h2>DALL·E Image Generation</h2>
+            <form action="/generate_image" method="post">
+                <label for="prompt">Prompt:</label>
+                <input type="text" id="prompt" name="prompt">
+                <button type="submit">Generate Image</button>
+            </form>
+            <div id="image-container">
+            
+            </div>
+        </div>-->
+		
+        <!-- Ask about diamonds -->
+        <!--<div class="card">-->
+<!---->     <!--<iframe src="http://127.0.0.1:7861" style="width: 100%; height: 500px;" frameborder="0"></iframe>-->
+<!--        </div>
+    </div>-->
+    <div class="section">
+        <!-- History of diamonds -->
+    	<div class="card">
+            <h2>💎 Diamond History 💎</h2>
+            <img src="diamonds/image1.png" alt="💎 Dazzling Diamond Clarity 💎" width="400">
+            <p>Thrilling tails about beautiful diamonds & their history!</p>
+            <button style="font-family: 'Comic Sans MS', cursive;" onclick="showCutDetails('Round Brilliant Cut')">Discover More</button>
+        </div>
+	    
+        <!-- Famous Diamonds -->
+        <div class="card">
+            <h2>💎 Famous Diamonds 💎</h2>
+            <img src="diamonds/image2.png" alt="💎 Dazzling Diamond Clarity 💎" width="400">
+            <p style="font-family: 'Comic Sans MS', cursive; color: #0000FF; background-color: #fcaef5; border: 2px solid #1e90ff; border-radius: 10px; padding: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); line-height: 1.5;">
+            <strong>The most famous diamonds to exist!</strong> Diamonds have long been revered for their beauty and rarity. Throughout history, several 
+            diamonds have gained fame for their size, color, or storied histories. Here are some of the most famous diamonds in the world:
+            
+            <strong>Cullinan Diamond</strong> 
+            - The largest rough diamond ever found, discovered in South Africa in 1905.
+            - It was cut into several large stones, including the Great Star of Africa (Cullinan I), which is set in the British Crown Jewels.
+            
+            <strong>Hope Diamond</strong> 
+            - A deep blue diamond weighing around 45.52 carats.
+            - Known for its alleged curse, the diamond has been owned by various notable figures and is currently housed at the Smithsonian Institution in Washington, D.C.
+            
+            <strong>The Koh-i-Noor</strong>
+            - A large, colorless diamond with a weight of around 105.6 carats.
+            - It is part of the British Crown Jewels and has a long and complex history involving various royal dynasties in India and beyond.
+            
+            <strong>The Regent Diamond</strong>
+            - A cushion-cut diamond weighing approximately 140.64 carats.
+            - Once owned by Louis XV of France, it is now on display at the Louvre Museum in Paris.
+            
+            <strong>The Orlov Diamond</strong>
+            - A large rose-cut diamond weighing approximately 189.62 carats.
+            - Named after Count Orlov, who is said to have purchased the diamond and gifted it to Empress Catherine the Great of Russia. It is now part of the Kremlin Diamond Fund.
+            
+            <strong>The Sancy Diamond</strong>
+            - A pale yellow diamond weighing around 55.23 carats.
+            - Known for its shield shape, the diamond has a storied history involving various European royal families.
+            
+            <strong>The Wittelsbach-Graff Diamond</strong>
+            - A deep blue diamond weighing around 31.06 carats.
+            - Originally part of the Bavarian Crown Jewels, the diamond was recut by Laurence Graff in 2008.
+            
+            <strong>The Darya-i-Noor</strong>
+            - A pale pink diamond weighing around 182 carats.
+            - It is one of the largest diamonds in the world and is part of the Iranian Crown Jewels.
+            
+            These diamonds are renowned not only for their size and beauty but also for their historical significance and associations with royalty and nobility. 
+            Many of them are displayed in museums and form part of the world's most valuable collections of gemstones.
+            </p>
+            
+            <button style="font-family: 'Comic Sans MS', cursive;" onclick="showCutDetails('Round Brilliant Cut')">Discover More</button>
+        </div>
+    </div>
+    
+</div>
+</body>
+<footer>
+	<p>&copy; 2024 Diamond Showcase</p>
+</footer>
+<!-- JavaScript for interactivity -->
+<script>
+	function showCutDetails(cutType) {
+		alert('Showing details for: ' + cutType);
+		// Implement further interactivity here (e.g., show modal with more info)
+	}
+
+	function showHistory() {
+		alert('Showing the history of diamonds.');
+		// Implement further interactivity here (e.g., navigate to history section)
+	}
+
+	function showFamousDiamonds() {
+		alert('Showing famous diamonds.');
+		// Implement further interactivity here (e.g., navigate to famous diamonds section)
+	}
+
+	// Get the modal for Image Generator
+	var gradioModal = document.getElementById("gradioModal");
+
+	// Get the button that opens the modal
+	var gradioBtn = document.getElementById("gradioBtn");
+
+	// Get the <span> element that closes the modal
+	var closeBtn = document.getElementsByClassName("close")[0];
+
+	// When the user clicks the button, open the modal
+	gradioBtn.onclick = function() {
+		gradioModal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	closeBtn.onclick = function() {
+		gradioModal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == gradioModal) {
+			gradioModal.style.display = "none";
+		}
+	}
+	
+	// #################### Get the modal for pricing
+	var gradioPricing = document.getElementById("gradioPricing");
+
+	// Get the button that opens the modal
+	var gradioPricingBtn = document.getElementById("gradioPricingBtn");
+
+	// Get the <span> element that closes the modal
+	var closeBtn = document.getElementsByClassName("close")[1];
+
+	// When the user clicks the button, open the modal
+	gradioPricingBtn.onclick = function() {
+		gradioPricing.style.display = "block";
+	}
+	// When the user clicks on <span> (x), close the modal
+	closeBtn.onclick = function() {
+		gradioPricing.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == gradioPricing) {
+			gradioPricing.style.display = "none";
+		}
+	}
+</script>
+</html>
